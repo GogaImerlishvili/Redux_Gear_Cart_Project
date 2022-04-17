@@ -1,11 +1,14 @@
 import React from "react";
+import cartItems from "./cart-items";
+import CartContainer from "./components/CartContainer";
 import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
-    <div>
+    <main>
       <Navbar />
-    </div>
+      <CartContainer cart={cartItems} />
+    </main>
   );
 };
 
