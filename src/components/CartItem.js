@@ -1,7 +1,6 @@
 import React from "react";
-import Cart from "../cart-items";
 
-const CartItem = ({ img, title, price, amount = Cart }) => {
+const CartItem = ({ img, title, price, amount }) => {
   return (
     <div className="cart-item">
       <img src={img} alt={title} />
@@ -19,7 +18,7 @@ const CartItem = ({ img, title, price, amount = Cart }) => {
           </svg>
         </button>
         {/* amount */}
-        <p className="amount">${amount}</p>
+        <p className="amount">{amount}</p>
         {/* decrease amount */}
         <button className="amount-btn">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
