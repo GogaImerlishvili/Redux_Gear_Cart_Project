@@ -1,4 +1,5 @@
 import { DECREASE, INCREASE, CLEAR_CART, REMOVE } from "./actions";
+import cartItems from "./cart-items";
 
 function reducer(state, action) {
   if (action.type === CLEAR_CART) {
@@ -11,7 +12,12 @@ function reducer(state, action) {
     console.log("INC");
   }
   if (action.type === REMOVE) {
-    console.log("you removed");
+    return {
+      ...state,
+      cart: state.cart.filter(
+        (cartItems) => cartItems.id !== action.payload.id
+      ),
+    };
   }
   return state;
 }
