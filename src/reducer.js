@@ -6,7 +6,18 @@ function reducer(state, action) {
     return { ...state, cart: [] };
   }
   if (action.type === DECREASE) {
-    console.log("you decreased amount");
+    let tempCart = [];
+    if (action.payload.amount === 1) {
+      tempCart = state.cart.filter((cartItems) => cartItems.id !== action);
+    } else {
+      tempCart = state.cart.map((cartItems) => {
+        if (cartItems.id === action.payload.id) {
+          cartItems = { ...cartItems, amount: cartItems.amount - 1 };
+        }
+        return cartItems;
+      });
+    }
+    return { ...state, cart: tempCart };
   }
   if (action.type === INCREASE) {
     let tempCart = state.cart.map((cartItems) => {
