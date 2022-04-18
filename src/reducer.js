@@ -1,20 +1,27 @@
-import { DECREASE, INCREASE } from "./actions";
+import { DECREASE, INCREASE, CLEAR_CART, REMOVE } from "./actions";
 
 function reducer(state, action) {
-  console.log({ state, action });
+  if (action.type === CLEAR_CART) {
+    return { ...state, cart: [] };
+  }
   if (action.type === DECREASE) {
-    // state.count = state.count - 1;
-    return { ...state, count: state.count - 1 };
+    console.log("you decreased amount");
   }
   if (action.type === INCREASE) {
-    // state.count = state.count - 1;
-    return { ...state, count: state.count + 1 };
+    console.log("INC");
   }
-  if (action.type === "RESET") {
-    // state.count = state.count - 1;
-    return { ...state, count: 0 };
+  if (action.type === REMOVE) {
+    console.log("you removed");
   }
   return state;
 }
+
+// Switch method
+//   switch (action.type) {
+//     case CLEAR_CART:
+//       return { ...state, cart: [] };
+//     default:
+//       return state;
+//   }
 
 export default reducer;
