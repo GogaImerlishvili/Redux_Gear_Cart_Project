@@ -1,7 +1,20 @@
-import { DECREASE, INCREASE, CLEAR_CART, REMOVE, GET_TOTALS } from "./actions";
+import {
+  DECREASE,
+  INCREASE,
+  CLEAR_CART,
+  REMOVE,
+  GET_TOTALS,
+  TOGGLE_AMOUNT,
+} from "./actions";
 import cartItems from "./cart-items";
 
-function reducer(state, action) {
+const initialStore = {
+  cart: cartItems,
+  total: 105,
+  amount: 5,
+};
+
+function reducer(state = initialStore, action) {
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
   }
@@ -49,6 +62,22 @@ function reducer(state, action) {
     );
     total = parseFloat(total.toFixed(2));
     return { ...state, total, amount };
+  }
+  if (action.type === TOGGLE_AMOUNT) {
+    return {
+      ...state,
+      cart: state.cart.map((cartItems) => {
+        if (cartItems.id === action.payload.id) {
+          if (action.payload.toggle === "inc") {
+            return (cartItems = { ...cartItems, amount: cartItems.amount + 1 });
+          }
+          if (action.payload.toggle === "dec") {
+            return (cartItems = { ...cartItems, amount: cartItems.amount - 1 });
+          }
+        }
+        return cartItems;
+      }),
+    };
   }
   return state;
 }
